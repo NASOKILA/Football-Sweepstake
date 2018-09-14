@@ -1,0 +1,47 @@
+﻿
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "SendMessage";
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 text-center ">
+            <h2>SendMessage</h2>
+
+            <form method="post" action="/api/Messages/Message">
+                <div class="form-group row col-sm-3 formTicket">
+                    <br />
+                    <label for="subject">Subject (optional)</label>
+                    <input type="text" name="subject" class="form-control" placeholder="Subject" />
+                    <br />
+                    <label for="body">Body (optional)</label>
+                    <textarea name="body" class="form-control" placeholder="Body"></textarea>
+                    <br />
+                    <label for="sender">Sender <span class="red-star">*</span></label>
+                    <select name="sender" class="form-control">
+                        <option disabled selected>From</option>
+                        @foreach (var gambler in ViewBag.Gamblers as List<CG.Recruitment.Sweepstake.DataStore.Gambler>)
+                        {
+                            <option value="@gambler.Name">@gambler.Name</option>
+                        }
+                    </select>
+                    <br />
+                    <label for="receiver">Receiver <span class="red-star">*</span></label>
+                    <select name="receiver" class="form-control">
+                        <option disabled selected>To</option>
+
+                        @foreach (var gambler in ViewBag.Gamblers as List<CG.Recruitment.Sweepstake.DataStore.Gambler>)
+                        {
+                            <option value="@gambler.Name">@gambler.Name</option>
+                        }
+                    </select>
+                    <br />
+                    <input class="back-btn btn btn-success" type="submit" value="Send Message" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

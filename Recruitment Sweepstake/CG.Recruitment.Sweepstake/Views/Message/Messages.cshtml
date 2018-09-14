@@ -1,0 +1,62 @@
+﻿@model IEnumerable<CG.Recruitment.Sweepstake.DataStore.Message>
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Messages";
+    int messagesCounter = 1;
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 text-center ">
+
+            @if (ViewData["message"] != null)
+            {
+                <br />
+                <div class="alert alert-success alert-dismissible">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>Success!</strong> @(ViewData["message"].ToString())
+                </div>
+            }
+
+            @if (ViewData["error"] != null)
+            {
+                <br />
+                <div class="alert alert-danger alert-dismissible">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>Danger!</strong> @(ViewData["error"].ToString())
+                </div>
+            }
+
+
+            <h1>All Messages</h1>
+            <hr />
+            @foreach (var message in Model)
+            {
+                <div class="col-md-4 messages">
+                    <h3>@(messagesCounter)</h3>
+                    <b>Subject:</b>
+                    <p>@message.Subject</p>
+                    <b>Body:</b>
+                    <p>@message.Body</p>
+                    <b>From Gambler:</b>
+                    <p>@message.FromGambler.Name</p>
+                    <b>To Gambler:</b>
+                    <p>@message.ToGambler.Name</p>
+                </div>
+                messagesCounter++;
+            }
+
+            @if (Model.Count() < 1)
+            {
+                <p>No messages in the database.</p>
+            }
+
+            <br />
+            <br />
+            <a class="btn btn-success" href="/api/Messages/SendMessage">Send Message</a>
+            <br />
+            <br />
+            <a class="btn btn-primary" href="/Default/Index">Back To Home</a>
+        </div>
+    </div>
+</div>

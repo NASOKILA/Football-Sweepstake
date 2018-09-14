@@ -1,0 +1,53 @@
+﻿@model IEnumerable<CG.Recruitment.Sweepstake.DataStore.Gambler>
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Gamblers";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 text-center ">
+            
+            @if (ViewData["error"] != null)
+            {
+                <br />
+                <div class="alert alert-danger alert-dismissible">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>Danger!</strong> @(ViewData["error"].ToString())
+                </div>
+            }
+
+            <h1>All Gamblers</h1>
+            <hr />
+
+            <ul class="gamblers-list">
+                @foreach (var gambler in Model)
+                {
+                    <li>
+                        <a href="/api/Gamblers/Gambler?name=@gambler.Name">
+                            @gambler.Name
+                        </a>
+                    </li>
+                }
+            </ul>
+            @if (Model.Count() < 1)
+            {
+                <p>No gamblers in the database.</p>
+            }
+
+            <h2>Register Gambler</h2>
+            <form method="post" action="/api/Gamblers/Gambler">
+                <div class="form-group row col-sm-3 formTicket">
+                    <br />
+                    <input hidden value="@Guid.NewGuid()" type="text" name="id" />
+                    <label for="name">Name <span class="red-star">*</span></label>
+                    <input class="form-control" type="text" name="name" />
+                    <br />
+                    <input class="back-btn btn btn-success" type="submit" value="Register Gambler" />
+                </div>
+            </form>
+            <br />
+
+        </div>
+    </div>
+</div>

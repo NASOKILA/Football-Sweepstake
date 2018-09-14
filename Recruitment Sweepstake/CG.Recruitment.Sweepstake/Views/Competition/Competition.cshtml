@@ -1,0 +1,138 @@
+﻿@model CG.Recruitment.Sweepstake.DataStore.Competition
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Competition";
+    int ticketCounter = 1;
+}
+
+<div class="container">
+    <div class="row">
+        <div class="text-center">
+
+            @if (ViewData["error"] != null)
+            {
+                <br />
+                <div class="alert alert-danger alert-dismissible">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>Danger!</strong> @(ViewData["error"].ToString())
+                </div>
+            }
+
+            <div>
+
+                <h1>Competition Details</h1>
+                <hr />
+                <div class="competition">
+                    <h2>@Model.Name</h2>
+
+                    <b>Description:</b>
+                    <p>@Model.Description</p>
+                    <p><strong>Entry Fee: </strong>@Model.EntryFee</p>
+
+                    <h3>Competitors:</h3>
+                    <button class="show-competitors-btn btn btn-success" onclick="showCompetitors()">Show Competitors</button>
+
+                    <!--Competitiors Here-->
+                    <ul class="competition-competitors add-competitors"></ul>
+
+                    <h3>Tickets:</h3>
+                    <ul class="competition-competitors">
+
+                        @foreach (var ticket in Model.Tickets)
+                        {
+                            <li>
+                                <a href="/api/Tickets/Ticket?id=@ticket.Id">
+                                    <b>@(ticketCounter).</b>
+                                    <br />
+                                    <b>Bought At:</b>
+                                    <p>@ticket.BoughtAt</p>
+                                </a>
+                            </li>
+
+                            ticketCounter++;
+                        }
+                        @if (Model.Tickets.Count() < 1)
+                        {
+                            <li>No tickets for this competition.</li>
+                        }
+                    </ul>
+                </div>
+            </div>
+
+            <h2>Buy ticket for this competition</h2>
+            <form method="post" action="/api/Tickets/Ticket">
+                <div class="form-group row col-sm-3 formTicket">
+                    <br />
+                    <select name="competitor" class="form-control">
+                        <option disabled selected>Competitors</option>
+                        @foreach (var competitor in Model.Competitors)
+                        {
+                            <option value="@competitor.Name">@competitor.Name</option>
+                        }
+                    </select>
+                    <br />
+                    <select name="gambler" class="form-control">
+                        <option disabled selected>Gamblers</option>
+                        @foreach (var gambler in ViewBag.Gamblers as List<CG.Recruitment.Sweepstake.DataStore.Gambler>)
+                        {
+                            <option value="@gambler.Name">@gambler.Name</option>
+                        }
+                    </select>
+                    <input hidden type="text" name="competitionId" value="@Model.Id" />
+                    <input hidden type="text" name="competitionName" value="@Model.Name" />
+                    <br />
+                    <input class="back-btn btn btn-success" type="submit" value="Buy New Ticket" />
+                </div>
+            </form>
+            <br />
+
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+
+    <script>
+
+        function showCompetitors() {
+
+            $.get('/api/Competitors')
+                .then(allCompetitorsAsString => {
+
+                    console.log("SUCCESS")
+
+                    let currentCompetition = $(".show-competitors-btn").parent()[0].children[0].innerHTML;
+
+                    let allCompetitors = JSON.parse(allCompetitorsAsString);
+
+                    let competitorsForThisCompetition = allCompetitors
+                        .filter(c => c.Competition.Name === currentCompetition);
+
+                    let competitorsCount = 1;
+                    competitorsForThisCompetition.forEach(competitor => {
+
+                        $(".add-competitors")
+                            .append("<li><a href='/api/Competitors/Competitor?name=" + competitor.Name + "'>" + competitorsCount + ". " + competitor.Name + "</a></li > ").hide()
+                            .fadeToggle();
+
+                        competitorsCount++;
+                        $(".show-competitors-btn").fadeOut();
+                    });
+
+                    if (competitorsForThisCompetition.length < 1) {
+                        $(".add-competitors")
+                            .append("<li>No competitors for this competition.</li>").hide()
+                            .fadeToggle();
+                    }
+
+                })
+                .catch(errorResponse => {
+                    console.log("ERROR")
+                    console.log(errorResponse);
+                })
+        }
+
+    </script>
+
+}

@@ -1,0 +1,287 @@
+﻿
+
+a:hover {
+    cursor: pointer;
+    text-decoration: none !important;
+}
+
+.likeButton {
+    margin: 10px !important;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+    font-weight: bold !important;
+    color: green !important;
+    background-color: white !important;
+}
+
+.likeButton:hover {
+    background-color: green !important;
+    color: white !important;
+}
+
+.removelikeButton {
+    margin: 10px !important;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+    font-weight: bold !important;
+    color: red !important;
+    background-color: white !important;
+}
+
+.removelikeButton:hover {
+    color: white !important;
+    background-color: red !important;
+}
+
+.jumbotron {
+    background-image: linear-gradient(to left top, #01f90c, #b4cc00, #ed9600, #ff5714, #f60358);
+}
+
+footer {
+    position: relative;
+    height: 50px;
+    z-index: 0;
+}
+
+.petStyle {
+    background-image: linear-gradient(to top, #06fb3b, #1ec52a, #1e921b, #18620e, #0e3603);
+    margin: 5px 0px;
+    padding: 25px;
+    border: 1px solid black;
+    transition-property: all;
+    transition-duration: 1s;
+    transition-timing-function: linear;
+}
+
+.petStyle:hover {
+    background-image: linear-gradient(to top, #f5f6f8, #b4b9bd, #768084, #3c4b4e, #081c1c);
+    cursor: pointer;
+}
+
+
+.petFoundStyle {
+    background-image: linear-gradient(to top, #fb0611, #f4353a, #e84f58, #d76570, #c27882);
+    color: black;
+    margin: 5px 0px;
+    padding: 25px;
+    border: 1px solid black; 
+    transition-duration: 0.5s;
+    transition-delay: 0.5s;
+    transition-timing-function: linear;
+}
+
+.petFoundStyle:hover {
+    background-image: linear-gradient(to top, #f5f6f8, #b4b9bd, #768084, #3c4b4e, #081c1c);
+    cursor: pointer;
+}
+
+
+.requiredStar {
+    color: red;
+    font-size: 20px
+}
+
+
+.profile {
+    color: grey;
+}
+
+
+.profileLink {
+    font-size:20px;
+}
+
+
+.tableAvatar {
+    width:40px; 
+    height:40px; 
+    border-radius:100%;
+}
+
+
+.thCol {
+    position: relative;
+    left: 70px;
+}
+
+
+.normalNav {
+    background-image: linear-gradient(to left bottom, #d9f901, #a8fd53, #78fe82, #46fbaa, #03f6cb);
+    border: none;
+}
+
+
+.adminNav {
+    background-image: linear-gradient(to left bottom, #a6a6f6, #807cd1, #5a54ac, #352d87, #030764);
+    color: white;
+}
+
+
+.adminNav a {
+    font-style:italic;
+    color:white !important;
+}
+
+
+.adminNav a:hover {
+    position: relative;
+    color: black !important;
+}
+
+
+.normalNav a {
+    font-style: italic;
+    color: black !important;
+}
+
+
+.normalNav a:hover {
+    position: relative;
+    color: white !important;
+}
+
+
+.avatar {
+    width:40px; 
+    height:40px; 
+    border-radius:100%; 
+    position:absolute; 
+    right:15px; 
+    top:5px;
+}
+
+
+.logoutBtn {
+    font-style: italic;
+    color: black !important;
+}
+
+
+.logoutBtn:hover {
+    position: relative;
+    color: white !important;
+    text-decoration:none;
+}
+
+
+.commentsContainer {
+    background-image: radial-gradient(circle, #f9f5c8, #f7f4a8, #f2f387, #eaf264, black);
+}
+
+
+.paginationDiv {
+    text-align: center;
+    width: 100%;
+    float:right;
+}
+
+
+.logoutBtnAdmin {
+    font-style: italic;
+    color: white !important;
+}
+
+
+.logoutBtnAdmin:hover {
+    position: relative;
+    color: black !important;
+    text-decoration: none;
+}
+
+
+.contentDiv {
+    width: 100%;
+    word-wrap: break-word;
+    padding: 20px 60px;
+}
+
+
+.display-3 {
+    font-size:50px;
+}
+
+.competition {
+    position: relative;
+    text-align: center;
+    background-color: antiquewhite;
+    border: 1px solid black;
+    display: inline-block;
+    padding: 10px 20px 30px 20px;
+    width: 30% !important;
+    margin: 1%;
+}
+
+.messages {
+    position: relative;
+    text-align: center;
+    background-color: antiquewhite;
+    border: 1px solid black;
+    display: inline-block;
+    width : 30% !important;
+    margin :1%;
+}
+
+a .competition {
+    text-decoration: none;
+    color: black;
+}
+
+a .competition:hover {
+    text-decoration: none;
+    color: black;
+    background-color:lightblue;
+}
+
+.competition-competitors {
+    position: relative;
+    right: 7%;
+}
+
+.gamblers-list > li {
+    font-size: 25px;
+    color: chocolate;
+}
+
+.gamblers-list > li:hover {
+    font-size: 30px;
+}
+
+.gamblers-list > li > a {
+    color: black;
+}
+
+.messages-send {
+    background-color: antiquewhite;
+    position: relative;
+    display: inline-block;
+    padding: 20px 20px 10px 20px;
+    border: 1px solid black;
+}
+
+.messages-received {
+    background-color: antiquewhite;
+    position: relative;
+    display: inline-block;
+    padding: 20px 20px 10px 20px;
+    border: 1px solid black;
+}
+
+
+.gambler-container {
+    background-color:burlywood;
+    padding: 20px;
+    margin-bottom:40px;
+}
+
+.competitorTicket {
+    padding: 10px;
+    border: 1px solid black;
+    background-color:aquamarine;
+}
+
+.formTicket {
+    position: relative;
+    left: 38.5%;
+}
+
+.red-star {
+    color:red;
+}

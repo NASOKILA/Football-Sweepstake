@@ -1,0 +1,36 @@
+﻿@model IEnumerable<CG.Recruitment.Sweepstake.DataStore.Ticket>
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Tickets";
+    int ticketsCounter = 1;
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 text-center ">
+            <h1>All Tickets</h1>
+            <hr />
+            @foreach (var ticket in Model)
+            {
+                <a href="/api/Tickets/Ticket?id=@ticket.Id">
+            <div class="col-md-4 competition">
+                <h3>@(ticketsCounter)</h3>
+                <b>Bought At:</b>
+                <p>@ticket.BoughtAt</p>
+                <b>Gambler:</b>
+                <p>@ticket.Gambler.Name</p>
+            </div>
+                </a>
+                ticketsCounter++;
+            }
+
+            @if (Model.Count() < 1)
+            {
+                <p>No tickets in the database.</p>
+            }
+        </div>
+    </div>
+</div>
+
+

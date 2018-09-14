@@ -1,0 +1,68 @@
+﻿@model CG.Recruitment.Sweepstake.DataStore.Gambler
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Gambler";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="text-center">
+            @if (ViewData["message"] != null)
+            {
+                <br />
+                <div class="alert alert-success alert-dismissible">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>Success!</strong> @(ViewData["message"].ToString())
+                </div>
+            }
+
+            <h1>Gambler Details</h1>
+            <hr />
+            <div class="gambler-container">
+
+                <h2>@Model.Name</h2>
+
+                <h3>Messages send:</h3>
+                <ul>
+                    @foreach (var message in ViewBag.messagesSend as List<CG.Recruitment.Sweepstake.DataStore.Message>)
+                    {
+                        <li>
+                            <div class="messages-send">
+                                <p><strong>Subject</strong> : @message.Subject</p>
+                                <b>Dscription</b> :
+                                <p>@message.Body</p>
+                            </div>
+                        </li>
+                    }
+
+                    @if (ViewBag.messagesSend.Count < 1)
+                    {
+                        <li>No messages send for this gambler.</li>
+                    }
+                </ul>
+
+                <br /><br />
+                <h3>Messages received:</h3>
+                <ul>
+                    @foreach (var message in ViewBag.messagesReceived as List<CG.Recruitment.Sweepstake.DataStore.Message>)
+                    {
+                        <li>
+                            <div class="messages-received">
+                                <p><strong>Subject</strong> : @message.Subject</p>
+                                <b>Dscription</b> :
+                                <p>@message.Body</p>
+                            </div>
+                        </li>
+                    }
+
+                    @if (ViewBag.messagesReceived.Count < 1)
+                    {
+                        <li>No messages receved for this gambler.</li>
+                    }
+                </ul>
+                <br />
+            </div>
+            <a class="back-btn btn btn-primary" href="/api/Gamblers/All">All Gamblers</a>
+        </div>
+    </div>
+</div>

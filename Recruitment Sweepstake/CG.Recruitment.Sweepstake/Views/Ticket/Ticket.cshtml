@@ -1,0 +1,57 @@
+﻿@model CG.Recruitment.Sweepstake.DataStore.Ticket
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Gambler";
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="text-center">
+            
+            @if (ViewData["message"] != null)
+            {
+                <br />
+                <div class="alert alert-success alert-dismissible">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>Success!</strong> @(ViewData["message"].ToString())
+                </div>
+            }
+
+            @if (ViewData["error"] != null)
+            {
+                <br />
+                <div class="alert alert-danger alert-dismissible">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>Danger!</strong> @(ViewData["error"].ToString())
+                </div>
+            }
+
+            <h1>Ticket Details</h1>
+            <hr />
+            <div>
+                <div class="competition">
+                    <br />
+                    <b>Bought At:</b>
+                    <p>@Model.BoughtAt</p>
+                    <b>Competition:</b>
+                    <p>@Model.Competition.Name</p>
+                    <b>Competitor:</b>
+                    <p>@Model.Competitor.Name</p>
+                    <b>Gambler:</b>
+                    <p>@Model.Gambler.Name</p>
+                    <b>Is Payment Received:</b>
+                    <p>@Model.IsPaymentReceived</p>
+
+                    @if (Model.PaymentReceivedAt != null)
+                    {
+                        <b>Payment Received At:</b>
+                        <p>@Model.PaymentReceivedAt</p>
+                    }
+
+                </div>
+            </div>
+            <a class="back-btn btn btn-primary" href="/api/Tickets/All">All Tickets</a>
+        </div>
+    </div>
+</div>

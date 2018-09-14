@@ -1,0 +1,37 @@
+﻿@model IEnumerable<CG.Recruitment.Sweepstake.DataStore.Competition>
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Competitions";
+    int competitorsCounter = 1;
+}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 text-center">
+
+            <h1>All Competitions</h1>
+            <hr />
+
+            @foreach (var competition in Model.OrderBy(c => c.EntryFee))
+            {
+                <a href="/api/Competitions/Competition?name=@competition.Name">
+                    <div class="col-md-4 competition">
+                        <h4>@(competitorsCounter)</h4>
+                        <h3>@competition.Name</h3>
+                        <b>Description:</b>
+                        <p>@competition.Description</p>
+                        <b>Entry Fee:</b>
+                        <i>@competition.EntryFee</i>
+                    </div>
+                </a>
+                competitorsCounter++;
+            }
+
+            @if (Model.Count() < 1)
+            {
+                <p>No competitions in the database.</p>
+            }
+
+        </div>
+    </div>
+</div>
+

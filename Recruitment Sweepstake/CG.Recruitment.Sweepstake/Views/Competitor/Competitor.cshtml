@@ -1,0 +1,51 @@
+﻿@model CG.Recruitment.Sweepstake.DataStore.Competitor
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Competitor";
+    int competitorsCounter = 1;
+}
+
+<div class="container">
+    <div class="row">
+        <div class="text-center">
+
+            <div>
+                <h1>Competitor Details</h1>
+                <hr />
+                <div class="competition">
+
+                    <h3>@Model.Name</h3>
+
+                    <b>Competition:</b>
+                    <p>@Model.Competition.Name</p>
+
+                    <h3>Tickets:</h3>
+
+                    <ul class="competition-competitors">
+                        @foreach (var ticket in Model.Tickets)
+                        {
+                            <li>
+                                <a href="/api/Tickets/Ticket?id=@ticket.Id">
+                                    <div class="competitorTicket">
+                                        <b>@(competitorsCounter).</b>
+                                        <br />
+                                        <b>Bought At:</b>
+                                        <p>@ticket.BoughtAt</p>
+                                    </div>
+                                </a>
+                                <br />
+                            </li>
+
+                            competitorsCounter++;
+                        }
+                        @if (Model.Tickets.Count() < 1)
+                        {
+                            <li>No ticket for this competitor.</li>
+                        }
+                    </ul>
+                </div>
+            </div>
+            <a class="back-btn btn btn-primary" href="/api/Competitions/All">All Competitions</a>
+        </div>
+    </div>
+</div>
