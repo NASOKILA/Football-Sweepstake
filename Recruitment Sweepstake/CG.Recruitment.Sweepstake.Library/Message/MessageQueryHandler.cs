@@ -20,11 +20,12 @@ namespace CG.Recruitment.Sweepstake.Library.Message
                     .Options);
 
             return context.Messages
+                .Include(m => m.FromGambler)
+                .Include(m => m.ToGambler)
                 .Where(m => (query.Id == Guid.Empty || query.Id == m.Id) &&
                             (query.FromGamblerId == Guid.Empty || query.FromGamblerId == m.FromGamblerId) &&
-                            (query.ToGamblerId == Guid.Empty || query.ToGamblerId == m.ToGamblerId))
-                            .Include(m => m.FromGambler)
-                            .Include(m => m.ToGambler);
+                            (query.ToGamblerId == Guid.Empty || query.ToGamblerId == m.ToGamblerId));
+                            
         }
     }
 }

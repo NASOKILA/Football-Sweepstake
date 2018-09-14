@@ -24,7 +24,16 @@
 
             var messagesFromHandler = await handler.HandleAsync(new MessageQuery());
 
+            //get all gamblers
+            IEnumerable<Gambler> gamblersList = await new GamblerQueryHandler().HandleAsync(new GamblerQuery());
+            
             var messages = messagesFromHandler.ToList();
+
+            foreach (Message m in messages)
+            {
+                m.ToGambler = gamblersList.ToList().FirstOrDefault(g => g.Id == m.ToGamblerId);
+            }
+
 
             IEnumerable<Gambler> gamblers = await new GamblerQueryHandler().HandleAsync(new GamblerQuery());
             

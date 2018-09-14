@@ -53,8 +53,7 @@ namespace CG.Recruitment.Sweepstake.DataStore.Migrations
 
             modelBuilder.Entity("CG.Recruitment.Sweepstake.DataStore.Gambler", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
+                    b.Property<Guid>("Id");
 
                     b.Property<string>("Name");
 
@@ -78,11 +77,7 @@ namespace CG.Recruitment.Sweepstake.DataStore.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("FromGamblerId")
-                        .IsUnique();
-
-                    b.HasIndex("ToGamblerId")
-                        .IsUnique();
+                    b.HasIndex("FromGamblerId");
 
                     b.ToTable("Message","Sweepstake");
                 });
@@ -123,17 +118,20 @@ namespace CG.Recruitment.Sweepstake.DataStore.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("CG.Recruitment.Sweepstake.DataStore.Gambler", b =>
+                {
+                    b.HasOne("CG.Recruitment.Sweepstake.DataStore.Message")
+                        .WithOne("ToGambler")
+                        .HasForeignKey("CG.Recruitment.Sweepstake.DataStore.Gambler", "Id")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
             modelBuilder.Entity("CG.Recruitment.Sweepstake.DataStore.Message", b =>
                 {
                     b.HasOne("CG.Recruitment.Sweepstake.DataStore.Gambler", "FromGambler")
-                        .WithOne()
-                        .HasForeignKey("CG.Recruitment.Sweepstake.DataStore.Message", "FromGamblerId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("CG.Recruitment.Sweepstake.DataStore.Gambler", "ToGambler")
-                        .WithOne()
-                        .HasForeignKey("CG.Recruitment.Sweepstake.DataStore.Message", "ToGamblerId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .WithMany()
+                        .HasForeignKey("FromGamblerId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("CG.Recruitment.Sweepstake.DataStore.Ticket", b =>

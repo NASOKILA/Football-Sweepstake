@@ -30,6 +30,21 @@ namespace CG.Recruitment.Sweepstake.DataStore
 
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<Message>()
+            .ToTable("Message", "Sweepstake");
+
+            modelBuilder.Entity<Message>()
+                .HasOne(m => m.FromGambler)
+                .WithOne()
+                .HasForeignKey<Gambler>(m => m.Id)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Message>()
+                .HasOne(m => m.ToGambler)
+                .WithOne()
+                .HasForeignKey<Gambler>(m => m.Id)
+                .OnDelete(DeleteBehavior.Restrict);
+
             modelBuilder.Entity<Competition>()
                 .ToTable("Competition", "Sweepstake");
 
@@ -58,20 +73,7 @@ namespace CG.Recruitment.Sweepstake.DataStore
                 .WithMany(c => c.Tickets)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<Message>()
-                .ToTable("Message", "Sweepstake");
 
-            modelBuilder.Entity<Message>()
-                .HasOne(m => m.FromGambler)
-                .WithOne()
-                //.HasForeignKey<Gambler>(m => m.Id)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            modelBuilder.Entity<Message>()
-                .HasOne(m => m.ToGambler)
-                .WithOne()
-                //.HasForeignKey<Gambler>(m => m.Id)
-                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

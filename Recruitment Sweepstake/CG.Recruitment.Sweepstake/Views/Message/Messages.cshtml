@@ -32,17 +32,18 @@
             <hr />
             @foreach (var message in Model)
             {
-                <div class="col-md-4 messages">
-                    <h3>@(messagesCounter)</h3>
-                    <b>Subject:</b>
-                    <p>@message.Subject</p>
-                    <b>Body:</b>
-                    <p>@message.Body</p>
-                    <b>From Gambler:</b>
-                    <p>@message.FromGambler.Name</p>
-                    <b>To Gambler:</b>
-                    <p>@message.ToGambler.Name</p>
-                </div>
+            <div class="col-md-4 messages">
+                <h3>@(messagesCounter)</h3>
+                <b>Subject:</b>
+                <p>@message.Subject</p>
+                <b>Body:</b>
+                <p>@message.Body</p>
+                <b>From Gambler:</b>
+                <p>@message.FromGambler.Name</p>
+                <b>To Gambler:</b>
+                <p>@message.ToGambler.Name</p>
+
+            </div>
                 messagesCounter++;
             }
 

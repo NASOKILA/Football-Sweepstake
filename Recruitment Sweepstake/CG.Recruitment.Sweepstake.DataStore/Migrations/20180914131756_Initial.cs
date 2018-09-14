@@ -2,7 +2,7 @@
 
 namespace CG.Recruitment.Sweepstake.DataStore.Migrations
 {
-    public partial class CompetitionAddedAtCompetitor : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
